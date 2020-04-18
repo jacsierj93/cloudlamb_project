@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Escritor {{writer.name}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container px-3">
+      <h1 class="display-1">Detalles Escritor.</h1>
+
+      <blockquote class="blockquote">
+        <p class="mb-0">{{writer.bio}}</p>
+        <footer class="blockquote-footer">{{writer.name}}</footer>
+      </blockquote>
+
+      <a href="{% url 'ruta_escritores'%}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Volver</a>
+      <a href="{% url 'editar_escritor' writer.id%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Editar</a>
+
+    </div>
+  </body>
+</html>
