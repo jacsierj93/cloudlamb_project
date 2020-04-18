@@ -55,14 +55,3 @@ def saveWriter(request,writer_id=False):
     writer.name = lista.get('nombre','Anonimo')
     writer.save() #insert or update
     return HttpResponseRedirect(reverse('detalle_escritor',args=(writer.id,)))
-
-#Solo para pruebas inutilizados
-# def hola(request,name):
-#     return HttpResponse('hola '+name)
-#
-# def fullHola(request,name, age):
-#     return HttpResponse('Hola '+name+' tienes '+str(age)+' de edad')
-#
-# def search(request):
-#     parametro = request.GET.get('q',None)
-#     return HttpResponse('usted busco {}'.format(parametro))
