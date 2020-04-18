@@ -1,37 +1,30 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>mi primera app</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  </head>
-  <body>
+{% extends '../base.html'%}
 
-    <div class="container px-3">
-      <h2 class="display-2">{{writer_list|length}} Escritores registrados!!</h2>
+{% block content %}
+  <h2 class="display-2">{{writer_list|length}} Escritores registrados por !!</h2>
 
-      <table class="table mt-5 table-hover">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#.</th>
-            <th scope="col">Nombre</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for writer in writer_list %}
-            <tr>
-              <td scope="row">{{writer.id}}</td>
-              <td>{{writer.name}}</td>
-              <td>
-                <a href="{%url 'detalle_escritor' writer.id%}" class="btn btn-outline-primary active" role="button" aria-pressed="true">Detalles</a>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+  <table class="table mt-5 table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#.</th>
+        <th scope="col">Nombre</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for writer in writer_list %}
+        <tr>
+          <td scope="row">{{writer.id}}</td>
+          <td>{{writer.name}}</td>
+          <td>
+            <a href="{%url 'detalle_escritor' writer.id%}" class="btn btn-outline-primary active" role="button" aria-pressed="true">Detalles</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-      <a href="{% url 'nuevo_escritor'%}" class="btn btn-outline-primary btn-lg active" role="button" aria-pressed="true">Agregar</a>
-    </div>
-  </body>
-</html>
+  <a href="{% url 'nuevo_escritor'%}" class="btn btn-outline-primary btn-lg active" role="button" aria-pressed="true">Agregar</a>
+
+
+{% endblock %}

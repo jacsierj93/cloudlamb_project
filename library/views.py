@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
@@ -12,9 +12,6 @@ from .models import Writer
 class IndexView(generic.ListView):
     model = Writer
 
-    #<nombre_app>/<nombre_modelo>_<list>.html
-    #template_name = 'writers/writers.html'
-
 class DetailView(generic.DetailView):
     model = Writer
     template_name = 'writers/writer.html'
@@ -25,33 +22,36 @@ def index(request):
 
 # def writers(request):
 #     writers = Writer.objects.all()
-#     context = {
+#     x = {
 #         'writer_list': writers,
+#         'usuario':'JACSIEL'
 #     }
-#     return render(request,'writers/writers.html',context)
 #
-#
+#     return render(request,'writers/writers.html',x)
+
+
 # def writer(request, writer_id):
-#     #writ = Writer.objects.get(pk=writer_id)
 #     writ = get_object_or_404(Writer,pk=writer_id)
-#
 #     return render(request,'writers/writer.html',{'writer':writ})
 
+
+
 def writerEdit(request,writer_id=False):
-    if(not writer_id):
-        return render(request,'writers/form.html',{'writer':{id:''}})
+    if(request.method == 'GET'):
+        if(not writer_id):
+            return render(request,'writers/form.html',{})
+        else:
+            writer = get_object_or_404(Writer,pk=writer_id)
+            return render(request,'writers/editar.html',{'writer':writer})
     else:
-        writer = get_object_or_404(Writer,pk=writer_id)
-        return render(request,'writers/editar.html',{'writer':writer})
 
-def saveWriter(request,writer_id=False):
-    lista = request.POST
-    if(not writer_id):
-        writer = Writer()
-    else:
-        writer = get_object_or_404(Writer,pk=writer_id)
+        if(not writer_id):
+            writer = Writer()
+        else:
+            writer = get_object_or_404(Writer,pk=writer_id)
 
-    writer.bio = lista.get('bio','biografia por defecto')
-    writer.name = lista.get('nombre','Anonimo')
-    writer.save() #insert or update
-    return HttpResponseRedirect(reverse('detalle_escritor',args=(writer.id,)))
+        lista = request.POST
+        writer.bio = lista.get('bio','biografia por defecto')
+        writer.name = lista.get('nombre','Anonimo')
+        writer.save() #insert UPDATE
+        return HttpResponseRedirect(reverse('detalle_escritor',args=(writer.id,)))
