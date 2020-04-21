@@ -58,6 +58,6 @@ def manage_book(request):
         if(formset.is_valid()):
             book = formset.save()
         else:
-            return HttpResponse('un elemento esta repetido')
+            return HttpResponse('un elemento esta repetido por favor revise')
 
         return HttpResponseRedirect(reverse('detail_book',args=(book.id,)))
