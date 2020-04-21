@@ -10,9 +10,9 @@ class Writer(models.Model):
 		return self.name
 
 class Book(models.Model):
-	title = models.CharField(max_length = 200)
+	title = models.CharField(max_length = 20, unique=True)
 	resume = models.CharField(max_length = 500)
-	year = models.IntegerField(default = 2020)
+	year = models.IntegerField(default = 1999)
 	writer = models.ForeignKey(Writer, on_delete=models.CASCADE)
 
 	def __str__(self):

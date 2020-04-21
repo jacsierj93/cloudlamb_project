@@ -4,17 +4,19 @@
 
 <form method="post" action="{% url 'guardar' %}" class="needs-validation" novalidate>
   {% csrf_token %}
-  <div class="form-row">
+  <!-- <div class="form-row">
     <div class="form-group col-md-12">
       <label for="inputEmail4">Nombre</label>
-      <input name="nombre" type="text" class="form-control" id="inputEmail4" required>
+      <input name="name" type="text" class="form-control" id="inputEmail4" required>
     </div>
     <div class="form-group col-md-12">
       <label for="inputPassword4">Biografia</label>
       <textarea name="bio" rows="8" cols="80" class="form-control"></textarea>
     </div>
   </div>
-   <button type="submit" class="btn btn-primary">Guardar</button>
+ -->
+ {{form}}
+    <button type="submit" class="btn btn-primary">Guardar</button>
 
 </form>
 

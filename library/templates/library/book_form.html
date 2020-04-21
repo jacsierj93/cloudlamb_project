@@ -1,0 +1,15 @@
+{% extends '../base.html'%}
+
+
+{% block content %}
+<h1 class="display-1">Libros:</h1>
+
+<form method="post" action="{% url 'book_save' %}" class="needs-validation" novalidate>
+  {% csrf_token %}
+
+  {{form}}
+ <hr>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+
+</form>
+{% endblock %}

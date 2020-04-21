@@ -15,8 +15,13 @@ urlpatterns = [
     path('editar/<int:writer_id>',views.writerEdit,name="editar_escritor"),
 
     path('edit/<int:writer_id>',views.writerEdit,name="form_editar"),
-    path('save',views.writerEdit,name="guardar")
+    path('save',views.writerEdit,name="guardar"),
 
+    path('books',views.BookIndexView.as_view(),name='list_books'),
+    path('book/<pk>',views.BookDetailView.as_view(),name='detail_book'),
+
+    path('book_insert',views.manage_book,name="book_form"),
+    path('book_save',views.manage_book,name="book_save")
 
 
     # path('saludar/<str:name>',views.hola,name='hola'),
